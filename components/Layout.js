@@ -15,11 +15,36 @@ import { Toolbar } from '@material-ui/core';
 import useStyles from '../utils/style';
 import { Store } from '../utils/Store';
 import Cookies from 'js-cookie';
+import { useState } from 'react';
 
 export default function Layout({ title, children, description }) {
   const { state, dispatch } = useContext(Store);
   const { darkMode } = state;
   const theme = createTheme({
+    overrides: {
+      MuiSwitch: {
+        switchBase: {
+          // Controls default (unchecked) color for the thumb
+          color: '#ccc',
+        },
+        colorSecondary: {
+          '&$checked': {
+            // Controls checked color for the thumb
+            color: '#8763F4',
+          },
+        },
+        track: {
+          // Controls default (unchecked) color for the track
+          opacity: 0.3,
+          backgroundColor: '#fff',
+          '$checked$checked + &': {
+            // Controls checked color for the track
+            opacity: 0.7,
+            backgroundColor: '#8763F4',
+          },
+        },
+      },
+    },
     typography: {
       h1: {
         fontSize: '1.6',

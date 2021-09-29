@@ -13,7 +13,7 @@ const data = {
       slug: 'slim-shirt',
     },
     {
-      name: 'Long Shirt',
+      name: 'Fit Shirt',
       category: 'Shirts',
       image: '/images/shirt3.jpg',
       price: 50,
