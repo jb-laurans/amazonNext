@@ -1,4 +1,5 @@
 {
-  "extends": "next/core-web-vitals",
+  "env": {"browser": true,"node":true},
+  "extends": ["eslint:recommended","next","next/core-web-vitals"],
   "@next/next/no-document-import-in-page": "off"
 }

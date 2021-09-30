@@ -65,7 +65,7 @@ export default function Layout({ title, children, description }) {
       primary: {
         main: '#f0c000',
       },
-      seconday: {
+      secondary: {
         main: '#208080',
       },
     },
