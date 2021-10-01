@@ -10,16 +10,18 @@ import {
   ThemeProvider,
   CssBaseline,
   Switch,
+  Badge,
 } from '@material-ui/core';
 import { Toolbar } from '@material-ui/core';
 import useStyles from '../utils/style';
 import { Store } from '../utils/Store';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 import { useState } from 'react';
 
 export default function Layout({ title, children, description }) {
   const { state, dispatch } = useContext(Store);
-  const { darkMode } = state;
+  const { darkMode, cart } = state;
   const theme = createTheme({
     overrides: {
       MuiSwitch: {
@@ -99,7 +101,18 @@ export default function Layout({ title, children, description }) {
                 onChange={darkModeChangeHandler}
               ></Switch>
               <NextLink href="/cart" passHref>
-                <Link>Cart</Link>
+                <Link>
+                  {cart.cartItems.length > 0 ? (
+                    <Badge
+                      color="secondary"
+                      badgeContent={cart.cartItems.length}
+                    >
+                      Cart
+                    </Badge>
+                  ) : (
+                    'Cart'
+                  )}
+                </Link>
               </NextLink>
               <NextLink href="/login" passHref>
                 <Link>Login</Link>
