@@ -18,6 +18,8 @@ import { Store } from '../utils/Store';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { useState } from 'react';
+import useTranslation from 'next-translate/useTranslation';
+import Image from 'next/image';
 
 export default function Layout({ title, children, description }) {
   const { state, dispatch } = useContext(Store);
@@ -79,6 +81,7 @@ export default function Layout({ title, children, description }) {
     const newDarkMode = !darkMode;
     Cookies.set('darkMode', newDarkMode ? 'ON' : 'OFF');
   };
+  const { t } = useTranslation('common');
   return (
     <div>
       <Head>
@@ -96,6 +99,30 @@ export default function Layout({ title, children, description }) {
             </NextLink>
             <div className={classes.grow}></div>
             <div>
+              <NextLink href="/" locale="en">
+                {/* <CardMedia component="img" image="/images/portu.jpg"></CardMedia> */}
+                <a>
+                  <Image
+                    src="/images/portugal.png"
+                    alt="Picture of the author"
+                    width={25}
+                    height={25}
+                  />
+                  Port
+                </a>
+              </NextLink>
+              <NextLink href="/" locale="fr">
+                {/* <CardMedia component="img" image="/images/portu.jpg"></CardMedia> */}
+                <a>
+                  <Image
+                    src="/images/fr.png"
+                    alt="Picture of the author"
+                    width={25}
+                    height={25}
+                  />
+                  Fr
+                </a>
+              </NextLink>
               <Switch
                 checked={darkMode}
                 onChange={darkModeChangeHandler}
@@ -107,15 +134,15 @@ export default function Layout({ title, children, description }) {
                       color="secondary"
                       badgeContent={cart.cartItems.length}
                     >
-                      Cart
+                      {t('header_cart')}
                     </Badge>
                   ) : (
-                    'Cart'
+                    t('header_cart')
                   )}
                 </Link>
               </NextLink>
               <NextLink href="/login" passHref>
-                <Link>Login</Link>
+                <Link>{t('header_login')}</Link>
               </NextLink>
             </div>
           </Toolbar>
